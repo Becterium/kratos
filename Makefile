@@ -49,16 +49,21 @@ api:
 build:
 	mkdir -p bin/ && go build -ldflags "-X main.Version=$(VERSION)" -o ./bin/ ./...
 
+.PHONY: run
+# run
+run:
+	kratos run
+
 .PHONY: generate
 # generate
 generate:
 	go generate ./...
 	go mod tidy
 
-.PHONY: run
-# run
-run:
-	kratos run
+.PHONY: wire
+# wire
+wire:
+	cd cmd/server/ && wire
 
 .PHONY: all
 # generate all
